@@ -1,11 +1,11 @@
 import express from "express";
 import cors from "cors";
-import dotenv from 'dotenv'
+import dotenv from "dotenv";
 import db from "./db.js";
 import prophancerModel from "./propmodel.js";
 
-dotenv.config()
-const port = process.env.API_PORT || 5050
+dotenv.config();
+const port = process.env.API_PORT || 5050;
 
 const app = express();
 
@@ -24,6 +24,13 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.get("/", async (req, res) => {
+  try {
+    res.status(200).json({ msg: "hallo" });
+  } catch (error) {
+    res.status(500).json({ msg: error.message });
+  }
+});
 
 // delete by id
 app.delete("/delete_schedule/:id", async (req, res) => {
@@ -66,7 +73,6 @@ app.post("/post_schedule", async (req, res) => {
     res.status(500).json({ msg: error.message });
   }
 });
-
 
 app.listen(port, () => {
   console.log(`app running in localhost:${port}`);
