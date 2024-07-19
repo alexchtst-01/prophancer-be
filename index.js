@@ -3,6 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import db from "./db.js";
 import prophancerModel from "./propmodel.js";
+import * as pg from 'pg'
 
 dotenv.config();
 const port = process.env.API_PORT || 5050;
